@@ -307,7 +307,7 @@ public class Utility {
     private static boolean isReinforceablePlant(Material mat) {
         // If this list changes, update wouldPlantDoubleReinforce to account
         // for the new soil types.
-        return Material.MELON_BLOCK.equals(mat)
+        return Material.MELON.equals(mat)
             || Material.PUMPKIN.equals(mat);
     }
     /**
@@ -318,7 +318,7 @@ public class Utility {
     public static Set<Material> getPlantSoilTypes(Material mat) {
         Set<Material> soilTypes = new HashSet<Material>();
         if (isSoilPlant(mat)) {
-            soilTypes.add(Material.SOIL);
+            soilTypes.add(Material.FARMLAND);
         }
         if (isDirtPlant(mat)) {
             soilTypes.add(Material.DIRT);
@@ -341,31 +341,30 @@ public class Utility {
             || Material.PUMPKIN_STEM.equals(mat)
             || Material.CARROT.equals(mat)
             || Material.POTATO.equals(mat)
-            || Material.CROPS.equals(mat)
-            || Material.MELON_BLOCK.equals(mat)
+            || Material.MELON.equals(mat)
             || Material.PUMPKIN.equals(mat)
-			|| Material.BEETROOT_BLOCK.equals(mat);
+			|| Material.BEETROOT.equals(mat);
     }
 
     private static boolean isDirtPlant(Material mat) {
-        return Material.SUGAR_CANE_BLOCK.equals(mat)
-            || Material.MELON_BLOCK.equals(mat)
+        return Material.SUGAR_CANE.equals(mat)
+            || Material.MELON.equals(mat)
             || Material.PUMPKIN.equals(mat);
     }
 
     private static boolean isGrassPlant(Material mat) {
-        return Material.SUGAR_CANE_BLOCK.equals(mat)
-            || Material.MELON_BLOCK.equals(mat)
+        return Material.SUGAR_CANE.equals(mat)
+            || Material.MELON.equals(mat)
             || Material.PUMPKIN.equals(mat);
     }
 
     private static boolean isSandPlant(Material mat) {
         return Material.CACTUS.equals(mat)
-            || Material.SUGAR_CANE_BLOCK.equals(mat);
+            || Material.SUGAR_CANE.equals(mat);
     }
 
     private static boolean isSoulSandPlant(Material mat) {
-        return Material.NETHER_WARTS.equals(mat);
+        return Material.NETHER_WART.equals(mat);
     }
 
     public static boolean isPlant(Block plant) {
@@ -384,7 +383,7 @@ public class Utility {
         switch(plant.getType()) {
             case CACTUS:
                 return 3;
-            case SUGAR_CANE_BLOCK:
+            case SUGAR_CANE:
                 return 3;
             default:
                 return 1;
@@ -968,10 +967,10 @@ public class Utility {
     private static BlockFace[] cardinals = new BlockFace[]{BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
 
     public static List<Material> doorTypes = new ArrayList<Material>(Arrays.asList(
-            Material.WOODEN_DOOR, Material.IRON_DOOR_BLOCK,
+            Material.OAK_DOOR, Material.IRON_DOOR,
             Material.ACACIA_DOOR, Material.BIRCH_DOOR,
             Material.DARK_OAK_DOOR, Material.JUNGLE_DOOR,
-            Material.SPRUCE_DOOR, Material.WOOD_DOOR));
+            Material.SPRUCE_DOOR));
     /**
      * Returns the block the Citadel is looking at, example: for beds, doors we want the bottom half.
      * @param block
@@ -994,19 +993,33 @@ public class Utility {
                 b = block;
             }
             break;
-        case WOODEN_DOOR:
-        case IRON_DOOR_BLOCK:
+        case OAK_DOOR:
+        case IRON_DOOR:
         case ACACIA_DOOR:
         case BIRCH_DOOR:
         case DARK_OAK_DOOR:
         case JUNGLE_DOOR:
         case SPRUCE_DOOR:
-        case WOOD_DOOR:
             if (!doorTypes.contains(block.getRelative(BlockFace.UP).getType())) {
                 b = block.getRelative(BlockFace.DOWN);
             }
             break;
-        case BED_BLOCK:
+			case BLACK_BED:
+			case BLUE_BED:
+			case BROWN_BED:
+			case CYAN_BED:
+			case GRAY_BED:
+			case GREEN_BED:
+			case LIGHT_BLUE_BED:
+			case LIGHT_GRAY_BED:
+			case LIME_BED:
+			case MAGENTA_BED:
+			case ORANGE_BED:
+			case PINK_BED:
+			case PURPLE_BED:
+			case RED_BED:
+			case WHITE_BED:
+			case YELLOW_BED:
             if (((Bed) block.getState().getData()).isHeadOfBed()) {
                 b = block.getRelative(((Bed) block.getState().getData()).getFacing().getOppositeFace());
             }
