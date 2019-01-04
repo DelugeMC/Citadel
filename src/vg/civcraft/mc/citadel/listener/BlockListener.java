@@ -82,7 +82,7 @@ public class BlockListener implements Listener {
 	public void comparatorPlaceCheck(BlockPlaceEvent event)
 	{
 		//We only care if they are placing a comparator
-		if(event.getBlockPlaced().getType() != Material.REDSTONE_COMPARATOR_OFF) return;
+		if(event.getBlockPlaced().getType() != Material.COMPARATOR) return;
 
 		Comparator comparator = (Comparator)event.getBlockPlaced().getState().getData();
 		Block block = event.getBlockPlaced().getRelative(comparator.getFacing().getOppositeFace());
